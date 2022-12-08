@@ -22,22 +22,26 @@ function App() {
   }
 
   function handleUndo() {
-    
+    const newPoints = [...points];
+    newPoints.pop();
+    setPoints(newPoints);
   }
 
   return (
-    <div className="App" onClick={handlePlaceCircle}>
+    <>
       <button onClick={handleUndo}>Undo</button>
-      {points.map((point) => (
-        <div
-          className="point"
-          style={{
-            left: point.x - 5 + "px",
-            top: point.y - 5 + "px",
-          }}
-          ></div>
-      ))}
-    </div>
+      <div className="App" onClick={handlePlaceCircle}>
+        {points.map((point) => (
+          <div
+            className="point"
+            style={{
+              left: point.x - 5 + "px",
+              top: point.y - 5 + "px",
+            }}
+            ></div>
+        ))}
+      </div>
+    </>
   );
 } 
 
