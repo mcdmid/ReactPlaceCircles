@@ -35,18 +35,19 @@ function App() {
     const newPoints = [...points];
     const poppedPoint = newPopped.pop();
     if (!poppedPoint) return;
-    points.push(poppedPoint);
+    newPoints.push(poppedPoint);
     setPoints(newPoints);
     setPopped(newPopped);
   }
 
   return (
     <>
-      <button onClick={handleUndo}>Undo</button>
-      <button onClick={handleRedo}>Redo</button>
+      <button disabled={points.length === 0} onClick={handleUndo}>Undo</button>
+      <button disabled={popped.length === 0} onClick={handleRedo}>Redo</button>
       <div className="App" onClick={handlePlaceCircle}>
-        {points.map((point) => (
+        {points.map((point, idx) => (
           <div
+            key={idx}
             className="point"
             style={{
               left: point.x - 5 + "px",
